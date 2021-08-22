@@ -1,0 +1,9 @@
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/CacheManagerTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/example/caches/LRUMemCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/example/caches/LFUMemCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/cache/composite/CompositeCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/cache/disk/DiskCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/cache/memory/lru/LRUMemoryCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/example/caches/LRUCompositeCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/example/caches/LFUCompositeCacheTest.java
+/Users/himashadesilva/Desktop/my_stuff/git/CacheFrameWork/src/test/java/com/cacheframework/cache/memory/lfu/LFUMemoryCacheTest.java

@@ -1,9 +1,0 @@
-com/cacheframework/cache/composite/CompositeCacheTest.class
-com/cacheframework/example/caches/LRUCompositeCacheTest.class
-com/cacheframework/cache/memory/lru/LRUMemoryCacheTest.class
-com/cacheframework/example/caches/LFUMemCacheTest.class
-com/cacheframework/cache/disk/DiskCacheTest.class
-com/cacheframework/CacheManagerTest.class
-com/cacheframework/cache/memory/lfu/LFUMemoryCacheTest.class
-com/cacheframework/example/caches/LFUCompositeCacheTest.class
-com/cacheframework/example/caches/LRUMemCacheTest.class

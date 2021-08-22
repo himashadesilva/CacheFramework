@@ -5,7 +5,7 @@ import com.cacheframework.exception.CacheConfigException;
 
 public abstract class AbstractCache<K, V>
 {
-    protected ICache cache;
+    protected ICache<K,V> cache;
 
     protected AbstractCache( String cacheName ) throws CacheConfigException
     {
@@ -14,7 +14,7 @@ public abstract class AbstractCache<K, V>
 
     public V get( K key )
     {
-        return ( V ) cache.getFromCache( key );
+        return cache.getFromCache( key );
     }
 
     public void put( K key, V value )

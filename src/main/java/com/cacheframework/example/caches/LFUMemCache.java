@@ -5,7 +5,7 @@ import com.cacheframework.exception.CacheConfigException;
 
 public class LFUMemCache extends AbstractCache<String, String>
 {
-    public static LFUMemCache instance;
+    private static LFUMemCache instance;
 
     private LFUMemCache( ) throws CacheConfigException
     {

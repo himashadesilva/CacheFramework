@@ -18,6 +18,7 @@ class CacheManagerTest
     @AfterEach
     void tearDown()
     {
+        CacheManager.getInstance().shutdown();
     }
 
     @Test

@@ -91,14 +91,6 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
                 value = Utils.deserialize( file );
             }
         }
-        catch( UnsupportedEncodingException e )
-        {
-            e.printStackTrace();
-        }
-        catch( NoSuchAlgorithmException e )
-        {
-            e.printStackTrace();
-        }
         catch( Exception e )
         {
             e.printStackTrace();
@@ -111,10 +103,7 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
     {
         if( keyHash.getSize() == cacheMaxSize )
         {
-            keyHash.getEvictKeys().forEach( evictKey ->
-            {
-                delete( evictKey );
-            } );
+            keyHash.getEvictKeys().forEach( this::delete );
         }
         try
         {
@@ -138,11 +127,7 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
                 keyHash.delete( key );
                 Files.delete( Path.of( getPathToFile( key ) ) );
             }
-            catch( IOException e )
-            {
-                e.printStackTrace();
-            }
-            catch( NoSuchAlgorithmException e )
+            catch( IOException | NoSuchAlgorithmException e )
             {
                 e.printStackTrace();
             }

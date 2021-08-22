@@ -5,7 +5,7 @@ import com.cacheframework.exception.CacheConfigException;
 
 public class LFUCompositeCache extends AbstractCache<String, String>
 {
-    public static LFUCompositeCache instance;
+    private static LFUCompositeCache instance;
 
     private LFUCompositeCache(  ) throws CacheConfigException
     {

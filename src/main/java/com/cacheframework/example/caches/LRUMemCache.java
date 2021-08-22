@@ -5,7 +5,7 @@ import com.cacheframework.exception.CacheConfigException;
 
 public class LRUMemCache extends AbstractCache<String, String>
 {
-    public static LRUMemCache instance;
+    private static LRUMemCache instance;
 
     private LRUMemCache() throws CacheConfigException
     {

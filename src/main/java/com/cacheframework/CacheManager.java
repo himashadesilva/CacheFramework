@@ -49,11 +49,11 @@ public class CacheManager
         }
     }
 
-    public ICache getCache( String cacheName ) throws CacheConfigException
+    public <K, V> ICache<K,V> getCache( String cacheName ) throws CacheConfigException
     {
         if( !cachePool.contains( cacheName ) )
         {
-            ICache cache = null;
+            ICache<K,V> cache = null;
             if( cacheConfiguration.getCaches().containsKey( cacheName ) )
             {
                 Config config = cacheConfiguration.getCaches().get( cacheName );
@@ -61,33 +61,41 @@ public class CacheManager
                 {
                     if( "LRU".equals( config.getEvictionStrategy() ) )
                     {
-                        cache = new LRUMemoryCache( config.getCacheName(), config.getLevelOneCacheSize() );
+                        cache = new LRUMemoryCache<>( config.getCacheName(), config.getLevelOneCacheSize() );
                     }
                     else if( "LFU".equals( config.getEvictionStrategy() ) )
                     {
-                        cache = new LFUMemoryCache( config.getCacheName(), config.getLevelOneCacheSize() );
+                        cache = new LFUMemoryCache<>( config.getCacheName(), config.getLevelOneCacheSize() );
                     }
                 }
                 else if( "Composite".equals( config.getCacheType() ) )
                 {
-                    cache = new CompositeCache( config );
+                    cache = new CompositeCache<>( config );
                 }
                 else
                 {
-                    throw new CacheConfigException("Cache configurations are not setup Properly for cache : " + cacheName);
+                    throw new CacheConfigException( "Cache configurations are not setup Properly for cache : " + cacheName );
                 }
                 cachePool.put( cacheName, cache );
                 return cache;
             }
             else
             {
-                throw new CacheConfigException("Cache configurations are not setup Properly.");
+                throw new CacheConfigException( "Cache configurations are not setup Properly." );
             }
         }
         else
         {
             return cachePool.get( cacheName );
         }
+    }
+
+    public void shutdown()
+    {
+        cachePool.forEach( ( s, iCache ) ->
+        {
+            iCache.clearCache();
+        } );
     }
 
 }

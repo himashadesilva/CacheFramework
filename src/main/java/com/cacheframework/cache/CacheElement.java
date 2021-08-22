@@ -2,6 +2,14 @@ package com.cacheframework.cache;
 
 import java.io.Serializable;
 
+/**
+ *  Cache element used to cache objects
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ * @param <K> cache element key Type
+ * @param <V> cache element value Type
+ */
 public class CacheElement<K,V> implements Serializable
 {
     private static final long serialVersionUID = -5182874521642030726L;

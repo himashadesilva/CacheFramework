@@ -3,6 +3,13 @@ package com.cacheframework;
 import com.cacheframework.cache.ICache;
 import com.cacheframework.exception.CacheConfigException;
 
+/**
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ * @param <K> cache key Type
+ * @param <V> cache value Type
+ */
 public abstract class AbstractCache<K, V>
 {
     protected ICache<K,V> cache;

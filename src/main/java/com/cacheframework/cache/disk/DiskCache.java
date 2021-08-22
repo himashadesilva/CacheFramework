@@ -1,5 +1,6 @@
 package com.cacheframework.cache.disk;
 
+import com.cacheframework.cache.CacheElement;
 import com.cacheframework.cache.memory.IMemoryCache;
 import com.cacheframework.cache.memory.lfu.LFUMemoryCache;
 import com.cacheframework.cache.memory.lru.LRUMemoryCache;
@@ -13,7 +14,20 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Disk cache implementation. Cache configurations like eviction strategy, disk directory path, cache max size are
+ * taken from {@link Config}. Here Cache key are stored in memory and values will be written into disk. {@link IMemoryCache}
+ * is used to keep cache keys. Memory cache stores {@link DiskElementDescriptor} which contains file path for the cached object.
+ *
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ * @param <K> cache key Type
+ * @param <V> cache value Type
+ */
 public class DiskCache<K, V> implements IDiskCache<K,V>
 {
     private static final int NUMBER_DISK_SHARDS = 10;
@@ -22,7 +36,7 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
     private String dirPath;
     private String cacheName;
     private int cacheMaxSize;
-
+    private Logger logger =  Logger.getLogger(this.getClass().getName());
 
     public DiskCache( Config config ) throws CacheConfigException
     {
@@ -76,7 +90,7 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
     @Override
     public V getFromCache( K key )
     {
-        V value = null;
+        CacheElement<K,V> cacheElement = null;
         try
         {
             DiskElementDescriptor elementDescriptor = keyHash.getFromCache( key );
@@ -88,19 +102,20 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
                     keyHash.delete( key );
                     return null;
                 }
-                value = Utils.deserialize( file );
+                cacheElement = Utils.deserialize( file );
             }
         }
         catch( Exception e )
         {
-            e.printStackTrace();
+            logger.log( Level.SEVERE, "Error in deserializing Object. Key : {0}", new Object[]{key} );
         }
-        return value;
+        return cacheElement == null ? null :cacheElement.getValue();
     }
 
     @Override
     public void addToCache( K key, V value )
     {
+        CacheElement<K,V> cacheElement = new CacheElement<>( key, value, cacheName );
         if( keyHash.getSize() == cacheMaxSize )
         {
             keyHash.getEvictKeys().forEach( this::delete );
@@ -109,11 +124,11 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
         {
             String filePath = getPathToFile( key );
             keyHash.addToCache( key, new DiskElementDescriptor( filePath ) );
-            Utils.serialize( filePath, value );
+            Utils.serialize( filePath, cacheElement );
         }
         catch( Exception e )
         {
-            e.printStackTrace();
+            logger.log( Level.SEVERE, "Error in Serializing Object. Key : {0}", new Object[]{key} );
         }
     }
 
@@ -129,7 +144,7 @@ public class DiskCache<K, V> implements IDiskCache<K,V>
             }
             catch( IOException | NoSuchAlgorithmException e )
             {
-                e.printStackTrace();
+                logger.log( Level.SEVERE, "Error in deleting Key. Key : {0}", new Object[]{key} );
             }
         }
     }

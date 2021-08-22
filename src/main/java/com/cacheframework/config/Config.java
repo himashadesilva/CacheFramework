@@ -1,5 +1,10 @@
 package com.cacheframework.config;
 
+/**
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class Config
 {
     private String cacheName;
@@ -83,6 +88,8 @@ public class Config
     @Override
     public String toString()
     {
-        return super.toString();
+        return "[cacheName=" + cacheName + ", cacheType=" + cacheType + ", evictionStrategy=" + evictionStrategy
+                       + ", levelOneCacheSize=" + levelOneCacheSize + ", levelTwoCacheEnable=" + levelTwoCacheEnable + ", levelTwoCacheSize="
+                       + levelTwoCacheSize + ", levelTwoCacheDir=" + levelTwoCacheDir +"]";
     }
 }

@@ -1,13 +1,16 @@
 package com.cacheframework.cache.memory.lfu;
 
-import com.cacheframework.cache.disk.DiskCache;
-import com.cacheframework.config.Config;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 class LFUMemoryCacheTest
 {
 

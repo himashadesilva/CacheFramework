@@ -1,5 +1,11 @@
 package com.cacheframework.cache;
 
+/**
+ * Cache Stats object to collect cache stats.
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class CacheStats
 {
     private int hitCount;

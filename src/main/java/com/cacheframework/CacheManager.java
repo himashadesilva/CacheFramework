@@ -14,12 +14,22 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Cache Manager to handle cache initialization. cache configurations are taken from a yaml file.
+ * initialzed caches are stored in a cache pool.
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class CacheManager
 {
     private static CacheManager instance;
     private final Hashtable<String,ICache> cachePool = new Hashtable<>();
     private CacheConfiguration cacheConfiguration;
+    private Logger logger = Logger.getLogger( this.getClass().getName() );
 
     private CacheManager()
     {
@@ -41,11 +51,11 @@ public class CacheManager
         try( InputStream in = Files.newInputStream( Paths.get( "src/main/resources/cacheConfig.yaml" ) ) )
         {
             cacheConfiguration = yaml.loadAs( in, CacheConfiguration.class );
-            System.out.println( cacheConfiguration.toString() );
+            logger.log( Level.INFO, "Cache config: {0}", cacheConfiguration );
         }
         catch( IOException e )
         {
-            e.printStackTrace();
+            logger.log( Level.SEVERE, "Error in reading cacheConfig yaml", e );
         }
     }
 

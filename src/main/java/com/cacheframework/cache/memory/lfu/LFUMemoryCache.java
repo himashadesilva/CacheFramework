@@ -11,7 +11,18 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * LFU cache implementation. Cache key eviction will be done using LFU algorithm. Frequency LinkedHashSet
+ * is stored as an array. This cache works as Hybrid with LRU. During the cache key eviction, it will get
+ * cache keys with least frequency and from that LinkedHashSet it will get least recently used one to evict.
+ * And also during cache hit, it will update frequency list array and LinkedHashSet in order to put most recently
+ * accessed elements ahead of less recently ones. Cache values are stored as {@link CacheElement}.
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ * @param <K> cache key Type
+ * @param <V> cache value Type
+ */
 public class LFUMemoryCache<K, V> implements IMemoryCache<K,V>
 {
 

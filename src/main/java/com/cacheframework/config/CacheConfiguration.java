@@ -2,9 +2,15 @@ package com.cacheframework.config;
 
 import java.util.Map;
 
+/**
+ *  cache configurations Object
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class CacheConfiguration
 {
-    private Map< String,Config> caches;
+    private Map<String,Config> caches;
 
     public Map<String,Config> getCaches()
     {
@@ -19,7 +25,7 @@ public class CacheConfiguration
     @Override
     public String toString()
     {
-        return super.toString();
+        return "Cache Config [caches= " + caches + "]";
     }
 }
 

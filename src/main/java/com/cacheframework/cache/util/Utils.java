@@ -9,6 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class Utils
 {
     private Utils()

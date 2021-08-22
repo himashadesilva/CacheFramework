@@ -10,7 +10,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ *  LRU cache implementation. Cache key eviction will be done using LRU algorithm. Cache values are stored
+ *  in Hashmap and the cache keys are stored in Doubly-linked list. LRU strategy is maintain by Doubly-linked list
+ *  and cache values are taken from the hashmap. Cache values are stored as {@link CacheElement}.
+ *
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ * @param <K> cache key Type
+ * @param <V> cache value Type
+ */
 public class LRUMemoryCache<K, V> implements IMemoryCache<K, V>
 {
     private int maxSize;

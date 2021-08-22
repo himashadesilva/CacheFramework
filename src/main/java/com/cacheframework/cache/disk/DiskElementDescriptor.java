@@ -1,5 +1,9 @@
 package com.cacheframework.cache.disk;
 
+/**
+ * @author Himasha de Silva
+ * @since 22 AUG 2021
+ */
 public class DiskElementDescriptor
 {
 

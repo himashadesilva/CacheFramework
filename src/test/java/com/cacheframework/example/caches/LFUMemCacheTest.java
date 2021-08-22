@@ -21,6 +21,10 @@ class LFUMemCacheTest
     @AfterEach
     void tearDown()
     {
+        if( cache != null )
+        {
+            cache.clear();
+        }
     }
 
     @Test

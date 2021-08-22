@@ -27,6 +27,11 @@ public abstract class AbstractCache<K, V>
         cache.delete( key );
     }
 
+    public void clear()
+    {
+        cache.clearCache();
+    }
+
     public int cacheSize()
     {
         return cache.getSize();
